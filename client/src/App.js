@@ -1,11 +1,10 @@
 import React from 'react'
+import RoutesComponent from './routes'
 
-function App() {
+const App = () => {
   return (
-    <>
-      Hello World!
-    </>
+    <RoutesComponent/>
   )
 }
 
-export default App;
+export default App
