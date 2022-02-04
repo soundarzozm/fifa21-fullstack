@@ -3,7 +3,7 @@ const controller = require('./controller');
 
 // ROUTES
 router.get('/', controller.root)
-router.get('/getplayers/', controller.getPlayers)
+router.get('/getplayers/:metric/:order', controller.getPlayers)
 router.get('/player/:id', controller.getPlayerByID)
 
 router.post('/createplayer', controller.createPlayer)

@@ -3,17 +3,23 @@ const pool = require('./dbconfig')
 
 
 exports.root = async (req, res) => {
-    return res.json('Hello World')
+    console.log('Server testing.')
+    return res.status(200).json('Hello World!')
 }
 
 
 
 exports.getPlayers = async (req, res) => {
-    pool.query(`SELECT * FROM data`, (error, results) => {
+
+    let metric = req.params.metric
+    let order = req.params.order
+
+    console.log('getPlayers called.')
+
+    pool.query(`SELECT * FROM data ORDER BY ${metric} ${order} LIMIT 10`, (error, results) => {
         if (error) {
             throw error
         }
-        console.log(results.rows)
         res.status(200).json(results.rows)
     })
 }
@@ -21,6 +27,7 @@ exports.getPlayers = async (req, res) => {
 
 
 exports.createPlayer = async (req, res) => {
+    console.log('createPlayer called.')
     let body = req.body
 
     pool.query(
@@ -35,13 +42,14 @@ exports.createPlayer = async (req, res) => {
           '${body.hits}', 
           '${body.potential}', 
           '${body.team}'
-        )`,
+        ) RETURNING *`,
 
         (error, results) => {
             if (error) {
                 throw error
             }
-            res.status(200)
+            console.log(results.rows)
+            res.status(200).json({status: "Player created."})
         }
     )
 }
@@ -49,7 +57,7 @@ exports.createPlayer = async (req, res) => {
 
 
 exports.getPlayerByID = async (req, res) => {
-    console.log(req.params)
+    console.log('getPlayerByID called.')
     let ID = req.params.id
 
     pool.query(`SELECT * FROM data WHERE player_id=${ID}`, (error, results) => {
@@ -64,6 +72,7 @@ exports.getPlayerByID = async (req, res) => {
 
 
 exports.updatePlayer = async (req, res) => {
+    console.log('updatePlayer called.')
     let body = req.body
 
     pool.query(`
@@ -76,13 +85,14 @@ exports.updatePlayer = async (req, res) => {
         hits = '${body.hits}', 
         potential = '${body.potential}', 
         team = '${body.team}' 
-        where player_id = '${req.params.id}'`,
+        where player_id = '${req.params.id}' RETURNING *`,
 
         (error, results) => {
             if (error) {
                 throw error
             }
-            res.status(200)
+            console.log(results.rows)
+            res.status(200).json({status: "Player updated."})
         }
     )
 }
@@ -90,13 +100,14 @@ exports.updatePlayer = async (req, res) => {
 
 
 exports.deletePlayer = async (req, res) => {
-  console.log(req.params)
+    console.log('deletePlayer called.')
     let ID = req.params.id
 
-    pool.query(`DELETE FROM data WHERE player_id = '${ID}'`, (error, results) => {
+    pool.query(`DELETE FROM data WHERE player_id = '${ID}' RETURNING *`, (error, results) => {
         if (error) {
             throw error
         }
-        res.status(200)
+        console.log(results.rows)
+        res.status(200).json({status: "Player deleted."})
     })
 }

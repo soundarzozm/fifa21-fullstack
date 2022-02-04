@@ -1,11 +1,15 @@
 import React from 'react'
-import {Navbar, Nav} from 'react-bootstrap'
+import {
+    Navbar, 
+//    Nav, 
+//    Container
+} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 
 const Header = () => {
     return(
         <>
-            
+
             <Navbar>
                 <LinkContainer to="/">
                     <Navbar.Brand>FIFA 21 Database</Navbar.Brand>
@@ -13,7 +17,7 @@ const Header = () => {
             </Navbar>
 
             
-            <Nav>
+            {/* <Nav>
                 
                 <Nav.Item>
                     <LinkContainer to="/">
@@ -27,7 +31,7 @@ const Header = () => {
                     </LinkContainer>
                 </Nav.Item>
                 
-            </Nav>
+            </Nav> */}
             
         </>
     )
