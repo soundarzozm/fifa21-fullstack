@@ -6,12 +6,13 @@ const Header = () => {
     return(
         <>
             
-            <Navbar className="yellowtail">
+            <Navbar>
                 <LinkContainer to="/">
-                    <Navbar.Brand>FIFA 21</Navbar.Brand>
+                    <Navbar.Brand>FIFA 21 Database</Navbar.Brand>
                 </LinkContainer>
             </Navbar>
 
+            
             <Nav>
                 
                 <Nav.Item>
@@ -27,6 +28,7 @@ const Header = () => {
                 </Nav.Item>
                 
             </Nav>
+            
         </>
     )
 }

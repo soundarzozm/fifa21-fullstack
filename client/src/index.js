@@ -1,14 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Routes from './routes';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import RoutesComponent from './routes'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles/styles.css'
 
-
 ReactDOM.render(
-  <React.StrictMode>
-      <Routes />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+    <React.StrictMode>
+        <RoutesComponent/>
+    </React.StrictMode>,
+    document.getElementById('root')
+)

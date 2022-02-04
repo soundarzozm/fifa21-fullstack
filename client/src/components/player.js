@@ -7,64 +7,51 @@ const Player = () => {
     useEffect(() => {
         axios.get('/getplayer').then((response) => {
             setPlayerDetails({
-                ...response.data[0]
+                ...response.data[0],
             })
         })
     }, [])
 
     return (
-        <div className="player-details">
-            <div className="mx-3 pt-3">
-                <h3>{playerDetails.name}</h3>
-                <ul>
-                    <li className="player_highlights-all">
-                        <span className="player_highlights">
-                            Overall: <strong>{playerDetails.overall}</strong>
-                        </span>
-                    </li>
+        <div className="container">
+            <h3>{playerDetails.name}</h3>
+            <ul>
+                <li>
+                    <span>
+                        Overall: <strong>{playerDetails.overall}</strong>
+                    </span>
+                </li>
 
-                    <li className="player_highlights-all">
-                        <span className="player_highlights">
-                            Potential:{' '}
-                            <strong>{playerDetails.potential}</strong>
-                        </span>
-                    </li>
+                <li>
+                    <span>
+                        Potential: <strong>{playerDetails.potential}</strong>
+                    </span>
+                </li>
 
-                    <li>
-                        <span>Age: </span>
-                        <span className="player-detail_value">
-                            {playerDetails.age}
-                        </span>
-                    </li>
+                <li>
+                    <span>Age: </span>
+                    <span>{playerDetails.age}</span>
+                </li>
 
-                    <li>
-                        <span>Nationality: </span>
-                        <span className="player-detail_value">
-                            {playerDetails.nationality}
-                        </span>
-                    </li>
+                <li>
+                    <span>Nationality: </span>
+                    <span>{playerDetails.nationality}</span>
+                </li>
 
-                    <li>
-                        <span>Club: </span>
-                        <span className="player-detail_value">
-                            {playerDetails.team}
-                        </span>
-                    </li>
+                <li>
+                    <span>Club: </span>
+                    <span>{playerDetails.team}</span>
+                </li>
 
-                    <li>
-                        <span>Positions: </span>
-                        <span className="player-detail_value">
-                            {playerDetails.position}
-                        </span>
-                    </li>
-                    <li>
-                        <span>Hits: </span>
-                        <span className="player-detail_value">
-                            {playerDetails.hits}
-                        </span>
-                    </li>
-                </ul>
-            </div>
+                <li>
+                    <span>Positions: </span>
+                    <span>{playerDetails.position}</span>
+                </li>
+                <li>
+                    <span>Hits: </span>
+                    <span>{playerDetails.hits}</span>
+                </li>
+            </ul>
         </div>
     )
 }

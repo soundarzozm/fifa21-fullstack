@@ -8,12 +8,10 @@ import Player from './components/player'
 const RoutesComponent = () => (
     <BrowserRouter>
         <Header/>
-
             <Routes>
                 <Route path="/player" element={<Player/>}/>
                 <Route path="/" element={<Home/>}/>
             </Routes>
- 
     </BrowserRouter>
 )
 
