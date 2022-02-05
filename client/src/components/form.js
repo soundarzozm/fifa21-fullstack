@@ -21,7 +21,11 @@ const PlayerForm = (props) => {
         
         onSubmit: (values) => {
             alert(JSON.stringify(values, null, 2))
-            apis.insertPlayer(values).then((response) => {
+            props.exist ? 
+            apis.updatePlayerById(props.playerData.player_id, values).then((response) => {
+                console.log(response.data)
+            })
+            : apis.insertPlayer(values).then((response) => {
                 console.log(response.data)
             })
         },

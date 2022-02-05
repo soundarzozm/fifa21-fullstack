@@ -39,7 +39,14 @@ const Home = () => {
         apis.getPlayers(homeState.metric, homeState.order, homeState.searchTerm).then((response) => {
             setHomeState({...homeState, data: response.data, loading: false})
         })
-    }, [homeState.metric, homeState.order, homeState.searchTerm])
+    }, [])
+
+    useEffect(() => {
+        setHomeState({...homeState, loading: true})
+        apis.getPlayers(homeState.metric, homeState.order, homeState.searchTerm).then((response) => {
+            setHomeState({...homeState, data: response.data, loading: false})
+        })
+    }, [homeState.metric, homeState.order, homeState.searchTerm, homeState.toggleCreate])
 
     return (
         <>
