@@ -1,8 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import apis from '../api'
+import {LinkContainer} from 'react-router-bootstrap'
+import PlayerForm from './form'
 
 const Home = () => {
-    const [homeState, setHomeState] = useState({data: [], loading: false, metric: 'overall', order:'DESC'})
+    const [homeState, setHomeState] = useState({
+        data: [], 
+        loading: false, 
+        metric: 'overall', 
+        order:'DESC',
+        searchTerm: '--',
+        toggleCreate: false
+    })
 
     const handleSort = (value) => {
         setHomeState({...homeState, metric: value.target.value})
@@ -12,12 +21,25 @@ const Home = () => {
         setHomeState({...homeState, order: value.target.value})
     }
 
+    const handleSearch = (value) => {
+        if (value.target.value !== ''){
+            setHomeState({...homeState, searchTerm: value.target.value})
+        } else {
+            setHomeState({...homeState, searchTerm: '--'})
+        }
+        
+    }
+
+    const handleCreate = () => {
+        setHomeState({...homeState, toggleCreate: !homeState.toggleCreate})
+    }
+
     useEffect(() => {
         setHomeState({...homeState, loading: true})
-        apis.getPlayers(homeState.metric, homeState.order).then((response) => {
+        apis.getPlayers(homeState.metric, homeState.order, homeState.searchTerm).then((response) => {
             setHomeState({...homeState, data: response.data, loading: false})
         })
-    }, [homeState.metric, homeState.order])
+    }, [homeState.metric, homeState.order, homeState.searchTerm])
 
     return (
         <>
@@ -32,10 +54,29 @@ const Home = () => {
                 <option value="ASC">Ascending</option>
             </select>
 
+            <input type="text" placeholder="Search" onChange={handleSearch}/>
+
             {homeState.data ?
             homeState.data.map((player) => (
-                <div key={player.player_id}>{player.name}</div>
+                <div key={player.player_id}>
+                    <LinkContainer
+                        to={`/player/${player.player_id}`}
+                    >
+                        <div>
+                            {player.name}
+                        </div>
+                    </LinkContainer>
+                </div>
             )):null}
+            
+            <button onClick={handleCreate}>Create New Player</button>
+            
+            {
+                homeState.toggleCreate ? 
+                <PlayerForm exist={false}/>
+                : null
+            }
+
         </>
     )
 }

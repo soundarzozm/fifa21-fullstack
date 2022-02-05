@@ -1,57 +1,81 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+import {useParams} from 'react-router-dom'
+import PlayerForm from './form'
+import {LinkContainer} from 'react-router-bootstrap'
+import apis from '../api'
 
 const Player = () => {
-    let [playerDetails, setPlayerDetails] = useState({})
+    
+    const { id } = useParams()
+    let [playerState, setPlayerState] = useState({playerData: {}, togglEdit: false})
 
     useEffect(() => {
-        axios.get('/getplayer').then((response) => {
-            setPlayerDetails({
-                ...response.data[0],
+        apis.getPlayerById(id).then((response) => {
+            setPlayerState({
+                ...playerState, playerData: response.data[0],
             })
         })
     }, [])
 
+    const handleEdit = () => {
+        setPlayerState({...playerState, toggleEdit: !playerState.toggleEdit})
+    }
+
+    const handleDelete = () => {
+        apis.deletePlayerById(id).then((response) => {
+            
+        })
+    }
+
     return (
         <div className="container">
-            <h3>{playerDetails.name}</h3>
+            <h3>{playerState.playerData.name}</h3>
             <ul>
                 <li>
                     <span>
-                        Overall: <strong>{playerDetails.overall}</strong>
+                        Overall: <strong>{playerState.playerData.overall}</strong>
                     </span>
                 </li>
 
                 <li>
                     <span>
-                        Potential: <strong>{playerDetails.potential}</strong>
+                        Potential: <strong>{playerState.playerData.potential}</strong>
                     </span>
                 </li>
 
                 <li>
                     <span>Age: </span>
-                    <span>{playerDetails.age}</span>
+                    <span>{playerState.playerData.age}</span>
                 </li>
 
                 <li>
                     <span>Nationality: </span>
-                    <span>{playerDetails.nationality}</span>
+                    <span>{playerState.playerData.nationality}</span>
                 </li>
 
                 <li>
                     <span>Club: </span>
-                    <span>{playerDetails.team}</span>
+                    <span>{playerState.playerData.team}</span>
                 </li>
 
                 <li>
                     <span>Positions: </span>
-                    <span>{playerDetails.position}</span>
+                    <span>{playerState.playerData.position}</span>
                 </li>
                 <li>
                     <span>Hits: </span>
-                    <span>{playerDetails.hits}</span>
+                    <span>{playerState.playerData.hits}</span>
                 </li>
             </ul>
+            <button onClick={handleEdit}>Edit Player</button>
+            {
+                playerState.toggleEdit ? 
+                <PlayerForm playerData={playerState.playerData} exist={true} />
+                : null
+            }
+            <LinkContainer to={`/`}>
+                <button onClick={handleDelete}>Delete Player</button>
+            </LinkContainer>
         </div>
     )
 }
