@@ -13,28 +13,11 @@ const Header = () => {
                 <Navbar>
                     <LinkContainer to="/">
                         <div className='header-bar'>
-                            <img className='logo' class="logo" src="logo.png" alt="logo" />
+                            <img className='logo' src="logo.png" alt="logo" />
                             <Navbar.Brand className='brand'> DATABASE</Navbar.Brand>
                         </div>
                     </LinkContainer>
                 </Navbar>
-
-
-            {/* <Nav>
-                
-                <Nav.Item>
-                    <LinkContainer to="/">
-                        <Nav.Link>Home</Nav.Link>
-                    </LinkContainer>
-                </Nav.Item>
-                
-                <Nav.Item>
-                    <LinkContainer to="/player">
-                        <Nav.Link>Player Analysis</Nav.Link>
-                    </LinkContainer>
-                </Nav.Item>
-                
-            </Nav> */}
         </>
     )
 }

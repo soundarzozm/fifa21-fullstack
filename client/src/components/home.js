@@ -80,12 +80,12 @@ const Home = () => {
             <input className='search-bar' type="text" placeholder="Search" onChange={handleSearch} />
 
             <div className="card-list">
-                {homeState.data
+                {homeState.data.length > 0
                     ? homeState.data.map((player) => (
                           <div key={player.player_id}>
                               <LinkContainer to={`/player/${player.player_id}`}>
                                   <div className="card">
-                                      <div class="card-header">
+                                      <div className="card-header">
                                           <div className='card-name'>{player.name}</div>
                                           <div className='card-desc'>{player.team}</div>
                                       </div>
@@ -93,7 +93,9 @@ const Home = () => {
                               </LinkContainer>
                           </div>
                       ))
-                    : null}
+                    : 
+                    <div>No players found.</div>
+                    }
             </div>
 
             <button className='button' onClick={handleCreate}>Create New Player</button>
