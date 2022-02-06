@@ -4,7 +4,7 @@ import apis from '../api'
 import * as Yup from 'yup'
 
 const PlayerForm = (props) => {
-    let [formState, setFormState] = useState({exists: false})
+    let [formState, setFormState] = useState({available: false})
 
     const formik = useFormik({
         initialValues: {
@@ -32,12 +32,16 @@ const PlayerForm = (props) => {
 
                     apis.getPlayerById(value).then((response) => {
                         if (response.data.length > 0) {
-                            setFormState({exists: false})
+                            setFormState({available: false})
                         } else {
-                            setFormState({exists: true})
+                            setFormState({available: true})
                         }
                     })
-                    return formState.exists
+                    if (props.exist){
+                        return (formState.available || value==props.playerData.player_id)
+                    } else {
+                        return formState.available
+                    }
                 }),
 
             name: Yup.string().required('Sorry, this is required.'),
