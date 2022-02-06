@@ -1,22 +1,25 @@
 import React from 'react'
 import {
-    Navbar, 
-//    Nav, 
-//    Container
+    Navbar,
+    //    Nav,
+    //    Container
 } from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 
 const Header = () => {
-    return(
+    return (
         <>
 
-            <Navbar>
-                <LinkContainer to="/">
-                    <Navbar.Brand>FIFA 21 Database</Navbar.Brand>
-                </LinkContainer>
-            </Navbar>
+                <Navbar>
+                    <LinkContainer to="/">
+                        <div className='header-bar'>
+                            <img className='logo' class="logo" src="logo.png" alt="logo" />
+                            <Navbar.Brand className='brand'> DATABASE</Navbar.Brand>
+                        </div>
+                    </LinkContainer>
+                </Navbar>
 
-            
+
             {/* <Nav>
                 
                 <Nav.Item>
@@ -32,7 +35,6 @@ const Header = () => {
                 </Nav.Item>
                 
             </Nav> */}
-            
         </>
     )
 }

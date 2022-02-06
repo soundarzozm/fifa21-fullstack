@@ -32,37 +32,47 @@ const PlayerForm = (props) => {
     })
 
     return (
-        <form onSubmit={formik.handleSubmit}>
-
+        <form className='form' onSubmit={formik.handleSubmit}>
+            <div className='form-component'>
             <label htmlFor="player_id">Player ID</label>
                 <input
+                    className='input-box'
                     id="player_id"
                     name="player_id"
                     type="text"
                     onChange={formik.handleChange}
                     value={formik.values.player_id}
                 /> 
+            </div>
 
+            <div className='form-component'>
             <label htmlFor="name">Player Name</label>
                 <input
+                    className='input-box'
                     id="name"
                     name="name"
                     type="text"
                     onChange={formik.handleChange}
                     value={formik.values.name}
                 />
+            </div>
 
+            <div className='form-component'>
             <label htmlFor="nationality">Country</label>
                 <input
+                    className='input-box'
                     id="nationality"
                     name="nationality"
                     type="text"
                     onChange={formik.handleChange}
                     value={formik.values.nationality}
                 />
+            </div>
 
+            <div className='form-component'>
             <label htmlFor="positions">Positions</label>
                 <input
+                    className='input-box'
                     id="positions"
                     name="positions"
                     type="text"
@@ -70,53 +80,69 @@ const PlayerForm = (props) => {
                     value={formik.values.positions}
                     
                 />
+            </div>
 
+            <div className='form-component'>
             <label htmlFor="overall">Overall</label>
                 <input
+                    className='input-box'
                     id="overall"
                     name="overall"
                     type="text"
                     onChange={formik.handleChange}
                     value={formik.values.overall}
                 />
+            </div>
 
+            <div className='form-component'>
             <label htmlFor="age">Age</label>
                 <input
+                    className='input-box'
                     id="age"
                     name="age"
                     type="text"
                     onChange={formik.handleChange}
                     value={formik.values.age}
                 />
+            </div>
 
+            <div className='form-component'>
             <label htmlFor="hits">Hits</label>
                 <input
+                    className='input-box'
                     id="hits"
                     name="hits"
                     type="text"
                     onChange={formik.handleChange}
                     value={formik.values.hits}
                 />
+            </div>
 
+            <div className='form-component'>
             <label htmlFor="potential">Potential</label>
                 <input
+                    className='input-box'
                     id="potential"
                     name="potential"
                     type="text"
                     onChange={formik.handleChange}
                     value={formik.values.potential}
                 />
+            </div>
 
+            <div className='form-component'>
             <label htmlFor="team">Team</label>
                 <input
+                    className='input-box'
                     id="team"
                     name="team"
                     type="text"
                     onChange={formik.handleChange}
                     value={formik.values.team}
                 />
+            </div>
 
-            <button type="submit">Submit</button>
+            <button className='button' type="submit">Submit</button>
         </form>
     )
 }

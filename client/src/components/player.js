@@ -28,7 +28,8 @@ const Player = () => {
     }
 
     return (
-        <div className="container">
+        <div className="player-data">
+            <div className='card-2'>
             <h3>{playerState.playerData.name}</h3>
             <ul>
                 <li>
@@ -67,15 +68,16 @@ const Player = () => {
                     <span>{playerState.playerData.hits}</span>
                 </li>
             </ul>
-            <button onClick={handleEdit}>Edit Player</button>
+            <button className='button' onClick={handleEdit}>Edit Player</button>
             {
                 playerState.toggleEdit ? 
                 <PlayerForm playerData={playerState.playerData} exist={true} />
                 : null
             }
             <LinkContainer to={`/`}>
-                <button onClick={handleDelete}>Delete Player</button>
+                <button className='button' onClick={handleDelete}>Delete Player</button>
             </LinkContainer>
+            </div>
         </div>
     )
 }

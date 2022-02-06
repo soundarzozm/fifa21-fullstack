@@ -18,7 +18,7 @@ exports.getPlayers = async (req, res) => {
     console.log('getPlayers called.')
     //console.log(`SELECT * FROM data WHERE name LIKE '${searchTerm}' ORDER BY ${metric} ${order} LIMIT 10`)
 
-    pool.query(`SELECT * FROM data WHERE name LIKE '${searchTerm}' ORDER BY ${metric} ${order} LIMIT 10`, (error, results) => {
+    pool.query(`SELECT * FROM data WHERE name LIKE '${searchTerm}' ORDER BY ${metric} ${order} LIMIT 5`, (error, results) => {
         if (error) {
             throw error
         }
